@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	#box{ height:300px; width:300px; margin:100px auto; border:3px solid #333; position:relative; top:0; left:0; border-radius:50%;}
+	.s{ height:140px; width:2px; background:#000; position:absolute; top:10px; left:50%; margin-left:-1px; -webkit-transform-origin:center bottom;}
+	.m{ height:120px; width:4px; background:#000; position:absolute; top:30px; left:50%; margin-left:-2px;-webkit-transform-origin:center bottom;}
+	.h{ height:100px; width:6px; background:#000; position:absolute; top:50px; left:50%; margin-left:-3px;-webkit-transform-origin:center bottom;}
+	em{ height:6px; width:4px; background:#000; -webkit-transform-origin:center 150px; position:absolute; left:50%;margin-left:-2px; top:0; font-style:normal;}
+	.five{ height:15px; width:4px;}
+	<!--span{ -webkit-transform-origin:center 135px; position:absolute; left:50%; margin-top:15px; width:30px; margin-left:-15px; text-align:center; top:0; font-weight:bolder; }-->
+	span{-webkit-transform-origin:center center; position:absolute; left:50%; margin-top:15px; width:30px; margin-left:-15px; text-align:center; top:0; font-weight:bolder;}
+</style>
+<script>
+	window.onload = function(){
+		var oBox = document.querySelector('#box');
+		var oH = document.querySelector('#box .h');
+		var oM = document.querySelector('#box .m');
+		var oS = document.querySelector('#box .s');	
+		for(var i = 0;i<60;i++){
+			var oEm = document.createElement('em');
+			if(i%5==0){
+				oEm.className = 'five';	
+				var oSpan = document.createElement('span');
+				oSpan.innerHTML = i/5;
+				oSpan.style.WebkitTransform = 'rotate('+-i*6+'deg)';
+				oEm.appendChild(oSpan);
+			}
+			oEm.style.WebkitTransform = 'rotate('+i*6+'deg)';
+			oBox.appendChild(oEm);	
+		}
+		
+		function tick(){
+			var oDate = new Date();
+			oH.style.WebkitTransform = 'rotate('+(oDate.getHours()+oDate.getMinutes()/60)*30+'deg)';
+			oM.style.WebkitTransform = 'rotate('+(oDate.getMinutes()+oDate.getSeconds()/60)*6+'deg)';
+			oS.style.WebkitTransform = 'rotate('+oDate.getSeconds()*6+'deg)';	
+		}
+		tick();
+		setInterval(tick,1000);
+	};
+</script>
+</head>
+
+<body>
+<div id="box">
+	<div class="h"></div>
+	<div class="m"></div>
+	<div class="s"></div>
+</div>
+</body>
+</html>

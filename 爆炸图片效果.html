@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{ height:260px; width:480px; margin:150px auto; position:relative; top:0; left:0; -webkit-transform-style:perserve-3d; -webkit-transform:perspective(10px) rotateX(0) rotateY(0); background:url(img/9.jpg) no-repeat;}
+
+</style>
+<script>
+	window.onload = function(){
+		var oDiv = document.querySelector('div');
+		var oBtn = document.querySelector('input');
+		var Row = 8;
+		var Cos = 4;
+		for(var i = 0;i<Row;i++){
+			for(var j = 0;j<Cos;j++){
+				var oS = document.createElement('span');
+				oS.style.height = oDiv.offsetHeight/Cos+'px';
+				oS.style.width = oDiv.offsetWidth/Row+'px';
+				oS.style.position = 'absolute';
+				oS.style.left = i*oDiv.offsetWidth/Row+'px';	
+				oS.style.top = j*oDiv.offsetHeight/Cos+'px';
+				oS.style.background = 'url(img/10.jpg) '+-i*oDiv.offsetWidth/Row+'px '+-j*oDiv.offsetHeight/Cos+'px no-repeat';
+				oDiv.appendChild(oS);	
+			}	
+		}
+		var aS = document.querySelectorAll('span');	
+		oBtn.onclick = function(){
+			for(var i = 0;i<aS.length;i++){
+				var x = aS[i].offsetLeft+aS[i].offsetWidth/2;
+				var y = aS[i].offsetTop+aS[i].offsetHeight/2;
+				var divX = oDiv.offsetWidth/2;
+				var divY = oDiv.offsetHeight/2;
+				var disX = x-divX+Math.random()*60+30;
+				var disY = y-divY+Math.random()*60+30;
+				aS[i].style.WebkitTransition='0.6s all ease';
+				aS[i].style.WebkitTransform='perspective(800px) translate('+disX+'px,'+disY+'px) rotateY('+(Math.random()*360-180)+'deg) rotateX('+(Math.random()*360-180)+'deg)';
+				aS[i].style.opacity=0;
+
+			}	
+		};
+	};
+</script>
+</head>
+
+<body>
+<input type="button" value="按钮" />
+<div></div>  
+</body>
+</html>

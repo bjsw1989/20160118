@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{ margin:0; padding:0; }
+	body{ background:#000; }
+	#box{ height:50px; width:300px; margin:200px auto; position:relative; top:0; left:0;}
+	#clip{ line-height:50px; text-align:center; height:50px; width:300px; font-size:20px; font-weight:bolder; 
+		background:-webkit-linear-gradient(-30deg,rgba(255,255,255,1) 150px,rgba(255,255,255,0) 170px,rgba(255,255,255,1) 190px); 
+		-webkit-background-clip:text;
+	 position:absolute; top:0; left:0; color:rgba(0,0,0,0); border:2px solid #fff;}
+	#bg{ height:50px; width:300px; font-size:20px; font-weight:bolder; background:#000; position:absolute; top:0; left:0; color:rgba(0,0,0,0);}
+
+</style>
+<script>
+	window.onload = function(){
+		var oBg = document.querySelector('#bg');
+		var oClip = document.querySelector('#clip');	
+		var i = -50;
+		setInterval(function(){
+			i+=3;
+			oClip.style.background = '-webkit-linear-gradient(-30deg,rgba(255,255,255,1) '+(i+10)+'px,rgba(255,255,255,0) '+(i+20)+'px,rgba(255,255,255,1) '+(i+40)+'px)';
+			oClip.style.WebkitBackgroundClip = 'text';
+			if(i>300){
+				i = 0;	
+			}
+
+		},16);
+	};
+</script>
+</head>
+
+<body>
+<div id="box">
+	<div id="bg"></div>
+	<div id="clip">滑动屏幕解锁</div>
+</div>
+</body>
+</html>
