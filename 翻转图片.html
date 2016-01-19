@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	div{ height:260px; width:480px; margin:100px auto; position:relative;}
+	span{ position:absolute; top:0; left:0; -webkit-transform-style:preserve-3d; -webkit-transition:1s all ease; }
+	span em{ position:absolute; top:0; left:0; -webkit-transform:perspective(800px); height:100%; width:100%; }
+	span .front{ background:url(img/1.jpg); -webkit-transform:translateZ(1px);}
+	span .back{ background:url(img/2.jpg); -webkit-transform:translateZ(-1px) scale(-1,1);}
+</style>
+<script>
+	window.onload = function(){
+		var oBtn = document.querySelector('input');
+		var oBox = document.querySelector('.box');
+		var Row = 4;
+		var Cos = 8;
+		
+		for(var i = 0;i<Row;i++){
+			for(var j = 0;j<Cos;j++){
+				var oS = document.createElement('span');
+				oS.innerHTML = '<em class="front"></em><em class="back"></em>';
+				oS.style.height = oBox.offsetHeight/Row+'px';
+				oS.style.width = oBox.offsetWidth/Cos+'px';
+				oS.style.top = oBox.offsetHeight/Row*i+'px';
+				oS.style.left = oBox.offsetWidth/Cos*j+'px';
+				oBox.appendChild(oS);
+				var oFront = oS.children[0];
+				var oBack = oS.children[1];
+				oFront.style.backgroundPosition = -oBox.offsetWidth/Cos*j+'px '+(-oBox.offsetHeight/Row*i)+'px';	
+				oBack.style.backgroundPosition = -oBox.offsetWidth/Cos*j+'px '+(-oBox.offsetHeight/Row*i)+'px';	
+				oS.r = i;
+				oS.c = j;
+			}	
+		}
+		var aS = document.getElementsByTagName('span');
+		oBtn.onclick = function(){
+			for(var i = 0;i<aS.length;i++){
+				(function(index){
+					setTimeout(function(){
+						aS[index].style.WebkitTransform = 'rotateY(180deg)';	
+					},(aS[index].c+aS[index].r)*100);
+				})(i);
+			}	
+		};	
+	};
+</script>
+</head>
+
+<body>
+<input type="button" value="下一页" />
+<div class="box"></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+.box{ height:260px; width:480px; margin:150px auto; position:relative; top:0; left:0; background:url(img/1.jpg) no-repeat; -webkit-transform-style:perserve-3d; -webkit-transform:perspective(800px) rotateX(0) rotateY(0); z-index:1; }
+.page{ height:260px; width:240px; -webkit-transform-style:preserve-3d; -webkit-transform-origin:left center; -webkit-transform:perspective(800px) rotateX(0) rotateY(0); position:absolute; top:0; right:0; transition:1s all ease; z-index:3;}
+.page .front{ height:100%; width:100%; background:url(img/1.jpg) -240px 0 no-repeat; -webkit-transform:translateZ(1px); position:absolute; top:0; left:0; }
+.page .back{ height:100%; width:100%; background:url(img/2.jpg) no-repeat; position:absolute; left:0; top:0; -webkit-transform:translateZ(-1px) scale(-1,1); }
+.bottom{ height:260px; width:240px; position:absolute; top:0; right:0; background:url(img/2.jpg) -240px 0 no-repeat; z-index:2;}
+.box:active.page{-webkit-transform:rotateY(180deg);}
+</style>
+</head>
+
+<body>
+<div class="box">
+	<div class="page">
+        <div class="front"></div>
+        <div class="back"></div>
+    </div>
+    <div class="bottom"></div>
+</div>  
+</body>
+</html>

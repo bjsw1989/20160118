@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{ margin:0; padding:0;}
+	.box{ height:260px; width:480px; margin:100px auto; -webkit-transform-style:preserve-3d; -webkit-transition:1s all ease; position:relative; -webkit-transform:perspective(800px) rotateY(0) translateZ(140px); }
+	.box div{ position:absolute; top:0; left:0; height:100%; width:100%; -webkit-transform:perspective(800px) rotateY(0) ; opacity:1;}
+	.box .left{ background:url(img/1.jpg) no-repeat; -webkit-transform-origin:left center; -webkit-transform:rotateY(60deg);}
+	.box .front{ background:url(img/2.jpg) no-repeat; -webkit-transform:rotateY(0);}
+	.box .right{ background:url(img/3.jpg) no-repeat; -webkit-transform-origin:right center; -webkit-transform: rotateY(-60deg);}
+</style>
+<script>
+	window.onload = function(){
+		var oBtn = document.querySelector('input');
+		var oBox = document.querySelector('.box');
+		var degree = 0;
+		oBtn.onclick = function(){
+			degree-=120;
+			oBox.style.WebkitTransform = 'perspective(800px) rotateY('+degree+'deg) translateZ(140px)';
+		};	
+	};
+</script>
+</head>
+
+<body>
+<input type="button" value="转" />
+<div class="box">
+	<div class="front"></div>
+	<div class="left"></div>
+	<div class="right"></div>
+</div>
+</body>
+</html>
